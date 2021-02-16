@@ -76,9 +76,9 @@
 
 # Get books:  
      - How To:
-          - URL ```(http://localhost:5000/books) [GET] ```
-          
+          - URL: http://localhost:5000/books  [GET]
                      - this will return a pagination List For All Books in your Library, it accept 1 query paramter which is page to control pagination.
+                     
           - example of CURL request ```curl -X GET 'http://localhost:5000/books' ```
           
                      - example of response:
@@ -142,35 +142,353 @@
                           },
                           200
                         ]
-                        ```   
+                        ``` 
+                        
+                   -- adding page paramter in your URL
+                   -- example : curl -X GET 'http://localhost:5000/books?page=1'
+                   --- success response 
+                    {
+                      "books": [
+                        {
+                          "author": "some one",
+                          "id": 1,
+                          "rating": 4,
+                          "title": "Hello World"
+                        },
+                        {
+                          "author": "some one",
+                          "id": 2,
+                          "rating": 0,
+                          "title": "Hello World"
+                        },
+                        {
+                          "author": "some one",
+                          "id": 5,
+                          "rating": 0,
+                          "title": "Hello World"
+                        },
+                        {
+                          "author": "mahmoud",
+                          "id": 10,
+                          "rating": 3,
+                          "title": "Hi"
+                        },
+                        {
+                          "author": "mahmoud",
+                          "id": 11,
+                          "rating": 3,
+                          "title": "Hi"
+                        },
+                        {
+                          "author": "mahmoud",
+                          "id": 13,
+                          "rating": 3,
+                          "title": "Hi"
+                        },
+                        {
+                          "author": "mahmoud",
+                          "id": 14,
+                          "rating": 3,
+                          "title": "Hi"
+                        },
+                        {
+                          "author": "mahmoud",
+                          "id": 16,
+                          "rating": 5,
+                          "title": "Into To HTML"
+                        }
+                      ],
+                      "code": "200",
+                      "success": true,
+                      "total_books": 77
+                    },
+                    200
+                  ]
+                   
+                        
+                   - example unsuccess responses
+                       if there are 0 books in your libarary it will return 404 not empty list for better handle
+                       
+                       ```json
+                         {
+                           "code": 404,
+                           "message": "resource not found",
+                           "success": false
+                         }
+                        ```
+                        
+                       ```json
+                         {
+                           "code": 405,
+                           "message": "method not allowed",
+                           'success': false
+                         }
+                        ```                   
                      
 
 
 # Update books:  
      - How To:
-          - URL ```(http://localhost:5000/books/[book_id]) [PATCH] ```
+          - URL (http://localhost:5000/books/[book_id]) [PATCH]
+          
                      - This Endpoint Accept only PATCH request to update an existing book rating you should include the new rating in your request body and convert to json
+                     
           - example of CURL request ```curl http://127.0.0.1:5000/books/15 -X PATCH -H "Content-Type:application/json" -d '{"rating":"4"}' ```
                      - example of Success response:
                      
                        ```json
-                         [
-                          {
-                            "books": [
-                              {
-                                "author": "some one",
-                                "id": 1,
-                                "rating": 4,
-                                "title": "Hello World"
-                              },
+                          }
+                         "book_rating": 4,
+                          "code": 200,
+                          "id": 15,
+                          "success": true
+                          }
                         ```
                      - example of Falid response:
 
                        ```json
-                         [
                           {
                              "code": 400,
                              "message": "bad request",
                              "success": false
                            }
                         ```
+                        
+                        
+# Delete books:  
+     - How To: curl -X DELETE http://127.0.0.1:5000/books/[book_id]
+          - URL (http://127.0.0.1:5000/books/[15]) [DELETE]
+          
+                     - The book's identifier (ID) must be included in the URL 
+                     - Usage: delete an existing book
+                     
+          - example of CURL request 
+                    curl http://127.0.0.1:5000/books/15 -X PATCH -H "Content-Type:application/json" -d '{"rating":"4"}'
+                     - example of Success response:
+                     
+                       ```json
+                         {
+                           "books": [
+                             {
+                               "author": "some one",
+                               "id": 1,
+                               "rating": 4,
+                               "title": "Hello World"
+                             },
+                             {
+                               "author": "some one",
+                               "id": 2,
+                               "rating": 0,
+                               "title": "Hello World"
+                             },
+                             {
+                               "author": "some one",
+                               "id": 5,
+                               "rating": 0,
+                               "title": "Hello World"
+                             },
+                             {
+                               "author": "mahmoud",
+                               "id": 10,
+                               "rating": 3,
+                               "title": "Hi"
+                             },
+                             {
+                               "author": "mahmoud",
+                               "id": 11,
+                               "rating": 3,
+                               "title": "Hi"
+                             },
+                             {
+                               "author": "mahmoud",
+                               "id": 13,
+                               "rating": 3,
+                               "title": "Hi"
+                             },
+                             {
+                               "author": "mahmoud",
+                               "id": 14,
+                               "rating": 3,
+                               "title": "Hi"
+                             },
+                             {
+                               "author": "mahmoud",
+                               "id": 16,
+                               "rating": 5,
+                               "title": "Into To HTML"
+                             }
+                           ],
+                           "code": 200,
+                           "deleted": 15,
+                           "success": true,
+                           "total_books": 74
+                         }
+                        ```
+                     - example of Falid response:
+
+                       ```json
+                         {
+                           "code": 405,
+                           "message": "method not allowed",
+                           "success": false
+                         }
+                        ```
+                        
+                       ```json
+                         {
+                           "code": 422,
+                           "message": "unprocessable",
+                           'success': false
+                         }
+                        ```
+                        
+                        
+ # ADD books/ Search Book by title:  
+     - How To: curl -X DELETE http://localhost:5000/books
+          - URL (http://127.0.0.1:5000/books/) [POST]
+          
+                     - This Endpoint Accept only POST request to Add New Book OR search for A book using title it accept JSON body
+                     - JSON body should Include at least 1 of this to continue your Request ['search', 'title','author','rating'] else it will return 404 Error
+                     
+          - example of CURL request To create new Book
+               curl -X POST 'http://localhost:5000/books' -d '{"title":"Hello World", "rating":"1", "author":"Mahmoud Hegazi" }' -H 'Content-Type: application/json'
+                     - example of Success response:
+                     
+                       ```json
+                         {
+                           "books": [
+                             {
+                               "author": "some one",
+                               "id": 1,
+                               "rating": 4,
+                               "title": "Hello World"
+                             },
+                             {
+                               "author": "some one",
+                               "id": 2,
+                               "rating": 0,
+                               "title": "Hello World"
+                             },
+                             {
+                               "author": "some one",
+                               "id": 5,
+                               "rating": 0,
+                               "title": "Hello World"
+                             },
+                             {
+                               "author": "mahmoud",
+                               "id": 10,
+                               "rating": 3,
+                               "title": "Hi"
+                             },
+                             {
+                               "author": "mahmoud",
+                               "id": 11,
+                               "rating": 3,
+                               "title": "Hi"
+                             },
+                             {
+                               "author": "mahmoud",
+                               "id": 13,
+                               "rating": 3,
+                               "title": "Hi"
+                             },
+                             {
+                               "author": "mahmoud",
+                               "id": 14,
+                               "rating": 3,
+                               "title": "Hi"
+                             },
+                             {
+                               "author": "mahmoud",
+                               "id": 16,
+                               "rating": 5,
+                               "title": "Into To HTML"
+                             }
+                           ],
+                           "code": 200,
+                           "deleted": 15,
+                           "success": true,
+                           "total_books": 74
+                         }
+                        ```
+                     - example of Falid response:
+
+                       ```json
+                         {
+                           "code": 405,
+                           "message": "method not allowed",
+                           "success": false
+                         }
+                        ```
+                        
+                       ```json
+                         {
+                           "code": 422,
+                           "message": "unprocessable",
+                           'success': false
+                         }
+                        ```
+                --- Search by title Adding a text search query to your request for the title of the book you want to search for is not case sensitive
+                --- example of POST request to search By Title case insensitive
+                curl -X POST 'http://localhost:5000/books' -d '{"search":"INTO TO HTML"}' -H 'Content-Type: application/json'
+                
+                It might show one of two results if the API finds that a book will return a JSON response
+                       {            
+                            "books": [
+                         {
+                             "author": "mahmoud",
+                             "id": 16,
+                             "rating": 5,
+                             "title": "Into To HTML"
+                          }
+                         ],
+                         "code": 200,
+                         "success": true,
+                         "total_books": 1
+                       }
+                       
+               If the API doesn't find that the book will return a JSON response
+               
+                       }               
+                         "books": [],
+                         "code": 200,
+                         "success": true,
+                         "total_books": 0
+                       }
+                
+                
+
+                     - example of Falid response:
+
+                       ```json
+                         {
+                           "code": 405,
+                           "message": "method not allowed",
+                           "success": false
+                         }
+                        ```
+                        
+                       ```json
+                         {
+                           "code": 422,
+                           "message": "unprocessable",
+                           'success': false
+                         }
+                        ```                
+ 
+                         
+                       ```json
+                         {
+                           "code": 404,
+                           "message": "resource not found",
+                           'success': false
+                         }
+                        ```    
+                        
+  # ALl Endpoints URLS
+  
+  1. http://localhost:5000/books  ||  http://localhost:5000/books?page=[page_number] (GET only)   (GET BOOKS)
+  2. http://localhost:5000/books [POST]  When searching abook or adding new one, body must contains one of these ['search', 'title','author','rating']  (ADD / Search BOOKS) 
+  3. http://localhost:5000/books/[book_id] [DELETE] Delete an existing book
+  4. http://localhost:5000/books/[book_id] [PATCH] When editing a book, the requesting body must have a rating ['rating']
