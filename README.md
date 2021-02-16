@@ -74,17 +74,73 @@
 
 #### All End Points:
 
-1. books:
-  * url (http://localhost:5000/books) [GET]
-  * this will return a pagination List For All Books in your Library, it accept 1 query paramter which is page to control pagination.
-  * example of CURL request ```curl -X GET 'http://localhost:5000/books' ```
-  
-     - books:
+1. books:  
+     - How To:
           - URL ```(http://localhost:5000/books) [GET] ```
                      - this will return a pagination List For All Books in your Library, it accept 1 query paramter which is page to control pagination.
           - example of CURL request ```curl -X GET 'http://localhost:5000/books' ```
                      - example of response:
 
+                       ``` json
+                         [
+                          {
+                            "books": [
+                              {
+                                "author": "some one",
+                                "id": 1,
+                                "rating": 4,
+                                "title": "Hello World"
+                              },
+                              {
+                                "author": "some one",
+                                "id": 2,
+                                "rating": 0,
+                                "title": "Hello World"
+                              },
+                              {
+                                "author": "some one",
+                                "id": 5,
+                                "rating": 0,
+                                "title": "Hello World"
+                              },
+                              {
+                                "author": "mahmoud",
+                                "id": 10,
+                                "rating": 3,
+                                "title": "Hi"
+                              },
+                              {
+                                "author": "mahmoud",
+                                "id": 11,
+                                "rating": 3,
+                                "title": "Hi"
+                              },
+                              {
+                                "author": "mahmoud",
+                                "id": 13,
+                                "rating": 3,
+                                "title": "Hi"
+                              },
+                              {
+                                "author": "mahmoud",
+                                "id": 14,
+                                "rating": 3,
+                                "title": "Hi"
+                              },
+                              {
+                                "author": "mahmoud",
+                                "id": 15,
+                                "rating": 3,
+                                "title": "Hi"
+                              }
+                            ],
+                            "code": "200",
+                            "success": true,
+                            "total_books": 75
+                          },
+                          200
+                        ]
+                        ```   
                      
 
 
