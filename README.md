@@ -77,7 +77,8 @@
 # Get books:  
      - How To:
           - URL: http://localhost:5000/books  [GET]
-                     - this will return a pagination List of group number of 8 For All Books in your Library, it accept 1 query parameter which is page to control pagination.
+                     - this will return a pagination List of group number of 8 For All Books in your Library, it accept 1 query parameter
+                     which is page start from 1 to control pagination.
                      
           - example of CURL request ```curl -X GET 'http://localhost:5000/books' ```
           
