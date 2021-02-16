@@ -1,4 +1,4 @@
-# Your Library (documentation)
+# Your Library API (documentation)
 
 # Introduction:
 
