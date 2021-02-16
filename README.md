@@ -80,6 +80,6 @@
   * example of CURL request ```curl -X GET 'http://localhost:5000/books' ```
   
  * Bullet list
-      * Nested bullet
-             * Sub-nested bullet etc
-      * Bullet list item 2  
+       * Nested bullet
+              * Sub-nested bullet etc
+       * Bullet list item 2  
