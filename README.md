@@ -9,7 +9,7 @@
 
 # Getting Started:
 
-* Base URL: localhost:5000/books
+* Base URL: localhost://5000/books
 * By default, the Your Library Docs demonstrate using curl to interact with the API over HTTP.
 * We have no API Keys or Authentication  so the API will accept your request without Authentication and you do not need to create new account to use it.
 
@@ -68,3 +68,18 @@
         'success':False
         }
     ```
+    
+
+# Resource endpoint library:
+
+#### All End Points:
+
+1. books:
+  * url (http://localhost:5000/books) [GET]
+  * this will return a pagination List For All Books in your Library, it accept 1 query paramter which is page to control pagination.
+  * example of CURL request ```curl -X GET 'http://localhost:5000/books' ```
+  
+ Markup : * Bullet list
+              * Nested bullet
+                  * Sub-nested bullet etc
+          * Bullet list item 2  
