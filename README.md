@@ -17,7 +17,7 @@
 # Errors:
 * Your Library API May return 4 types of errors [404, 422, 400, 405]
 
-### 404:
+### 404 Resource Not Found:
 
 * JSON response will return and this error happend if resource not found for example request to update/delete book that not exist, or 0 books in the API
 * example of the response : 
@@ -29,7 +29,7 @@
         }
     ```
     
-### 422:
+### 422 Unprocessable:
 
 * JSON response will return and this error happens if Your API request unprocessable That's mean The API received your request but it could not handle your request
 * -- For example, if you delete a book that does not exist, 
@@ -42,7 +42,7 @@
         }
     ```
     
-### 400:
+### 400 Bad Request:
 
 * JSON response will return and this error happens if you send A bad request the API could not understand it 
 * -- For example,  send Not JSON body to the POST / Patch endpoints,
@@ -55,7 +55,7 @@
         }
     ```
     
-### 405:
+### 405 Method not allowed:
 * It's an HTTP response status code that indicates that the request method is known by the server but is not supported by the target resource
 * -- For example,  send post request to endpoint that accept only Patch or GET requests
 * JSON response will return and this error happens if used A wrong Method in your request 
