@@ -74,7 +74,7 @@
 
 #### All End Points:
 
-1. books:  
+# Get books:  
      - How To:
           - URL ```(http://localhost:5000/books) [GET] ```
                      - this will return a pagination List For All Books in your Library, it accept 1 query paramter which is page to control pagination.
@@ -144,3 +144,31 @@
                      
 
 
+# Update books:  
+     - How To:
+          - URL ```(http://localhost:5000/books/[book_id]) [PATCH] ```
+                     - This Endpoint Accept only PATCH request to update an existing book rating you should include the new rating in your request body and convert to json
+          - example of CURL request ```curl http://127.0.0.1:5000/books/15 -X PATCH -H "Content-Type:application/json" -d '{"rating":"4"}' ```
+                     - example of Success response:
+                     
+                       ```json
+                         [
+                          {
+                            "books": [
+                              {
+                                "author": "some one",
+                                "id": 1,
+                                "rating": 4,
+                                "title": "Hello World"
+                              },
+                        ```
+                     - example of Falid response:
+
+                       ```json
+                         [
+                          {
+                             "code": 400,
+                             "message": "bad request",
+                             "success": false
+                           }
+                        ```
