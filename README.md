@@ -79,7 +79,7 @@
   * this will return a pagination List For All Books in your Library, it accept 1 query paramter which is page to control pagination.
   * example of CURL request ```curl -X GET 'http://localhost:5000/books' ```
   
- Markup : - Bullet list
+   - Bullet list
               - Nested bullet
                    - Sub-nested bullet etc
           - Bullet list item 2 
