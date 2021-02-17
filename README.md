@@ -20,6 +20,8 @@
 
 ## how to set up the local development 
 
+* npm install only once to install dependency 
+* npm start
 * on Windows: Download GitBash, open it, ```cd [project_folder]``` run these 3 commands 
 * ``` export FLASK_APP=flaskr ```
 * ``` export FLASK_ENV=development ```
