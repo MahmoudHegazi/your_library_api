@@ -509,7 +509,8 @@
   * [test_normal_get, test_failed_one, test_path_request, test_404_path_request, test_400_path_request, test_delete_request , test_422_book_not_exist_request, 
   * test_post_request, test_wrong_post_create_error_request, test_422_post_request, test_search_book, test_search_not_found_book]
   *  in order to start the test cd [project_folder] and run python test.py
-  #### test results will be like this
+  #### test results will be like this:
+  ('hi')['test_sc.JPG']
   
   # ALl Endpoints URLS
   
