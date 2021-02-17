@@ -4,7 +4,7 @@
 
 * The Your Library is organized around REST. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes.
 * you can use our API to Create new Books to your Library, control and organize your library by update or delete books or add new books.
-* you can search books or get full pagination list of the books in your library we created this API using Python.
+* you can search books or get full pagination list of the books in your library we created this API using Python Flask.
 
 
 # Getting Started:
@@ -12,6 +12,22 @@
 * Base URL: localhost://5000/books
 * By default, the Your Library Docs demonstrate using curl to interact with the API over HTTP.
 * We have no API Keys or Authentication  so the API will accept your request without Authentication and you do not need to create new account to use it.
+* In this API, you will find a setting for 2 Mobile SMS API which you can use in your app and flask-mail to send mails using your gmail account.
+* in order to use the Mobile SMS you have to visit twilio or vonage to get your own API key and API pass and token in twilio.
+
+## how to set up the local development 
+
+* on Windows: Download GitBash, open it, ```cd [project_folder]``` run these 3 commands 
+* ``` export FLASK_APP=flaskr ```
+* ``` export FLASK_ENV=development ```
+* ``` flask run ```
+* For Linux users, you can use the same three commands to start the API
+
+# Acknowledgements:
+
+* https://udacity.com (advanced track)
+* https://twilio.com
+* https://www.vonage.co.uk/
 
 
 # Errors:
@@ -487,6 +503,14 @@
                          }
                         ```    
                         
+  # Tests:
+  * in your-library API we use unit test to make sure everything is tested before the production.
+  * There are 12 functions to test Our API
+  * [test_normal_get, test_failed_one, test_path_request, test_404_path_request, test_400_path_request, test_delete_request , test_422_book_not_exist_request, 
+  * test_post_request, test_wrong_post_create_error_request, test_422_post_request, test_search_book, test_search_not_found_book]
+  *  in order to start the test cd [project_folder] and run python test.py
+  #### test results will be like this
+  
   # ALl Endpoints URLS
   
   1. http://localhost:5000/books  ||  http://localhost:5000/books?page=[page_number] (GET only)   (GET BOOKS)
