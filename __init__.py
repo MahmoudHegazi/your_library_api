@@ -1,3 +1,4 @@
+
 from flask import Flask, jsonify, request, abort, make_response
 import os
 import json
@@ -179,25 +180,37 @@ def create_app(test_config=None):
     # update a book
     @app.route('/books/<int:book_id>', methods=['PATCH'])
     def update_book(book_id):
-        try:
-            body = request.get_json()
-            body = json.loads(body)
-        except:
-            # if no data sent with request that is bad request
-            abort(400)
+        book = Book.query.filter_by(id=book_id).one_or_none()
+        #body = json.loads(body)
         try:
             book = Book.query.filter_by(id=book_id).one_or_none()
-            if book is None:
+            if book == None:
                 #response = make_response(jsonify(message="Hello, We Did not Found that book try another one"), 404)
                 abort(404)
-            if 'rating' in body:
-                #body.get('rating')
-                book.rating = int(body['rating'])
-            #return str(book.rating)
-            book.update()
+
+            try:
+                body = request.get_json()
+                x = body.get('rating')
+                book.rating = x
+                #return str(book.rating)
+                book.update()
+            except AttributeError:
+                body = request.get_json()
+                body = json.loads(body)
+                if 'rating' in body:
+                    book.rating = body['rating']
+            except TypeError:
+                abort(400)
+            except:
+                abort(404)
+
+
+
         except werkzeug.exceptions.NotFound:
             # if book not found in db this should returned
             abort(404)
+        except TypeError:
+            abort(400)
         except:
             print(sys.exc_info())
             abort(400)
@@ -235,13 +248,18 @@ def create_app(test_config=None):
         try:
             body = request.get_json()
             json_body = json.loads(body)
+            title = json_body.get('title', None)
+            author = json_body.get('author', None)
+            rating = json_body.get('rating', None)
+            search = json_body.get('search', None)
         except:
-            abort(422)
+            body = request.get_json()
+            title = body.get('title', None)
+            author = body.get('author', None)
+            rating = body.get('rating', None)
+            search = body.get('search', None)
         # if title get it else make it None make sure title is nullable in DB title= author= rating=
-        title = json_body.get('title', None)
-        author = json_body.get('author', None)
-        rating = json_body.get('rating', None)
-        search = json_body.get('search', None)
+
         try:
             if search:
                 selection = Book.query.filter(Book.title.ilike('%{}%'.format(search))).order_by('id').all()
