@@ -18,6 +18,13 @@
 * In this API, you will find a setting for 2 Mobile SMS API which you can use in your app and flask-mail to send mails using your gmail account.
 * in order to use the Mobile SMS you have to visit twilio or vonage to get your own API key and API pass and token in twilio.
 
+# start with test:
+
+* dropdb student
+* createdb student
+* psql student < books.psql
+* python test.py
+
 ## how to set up the local development 
 
 * npm install only once to install dependency 
